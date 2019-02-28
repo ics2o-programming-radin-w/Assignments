@@ -21,5 +21,5 @@ local verticesTrapazoid = {-300,-350, 200,-350, 300,0, -400,0}
 local myTrapazoid = display.newPolygon (500,500, verticesTrapazoid)
 
 --display octagon
---local verticesOctagon = {-250,-500, 0,-500, 100,-350, -250,100, 0,-100 -250,-100, -300,-250, -300,-400}
---local myOctagon = display. new polygon (512,368
+local verticesOctagon = {-250,-500, 0,-500, 100,-350, -250,100, 0,-100 -250,-100, -300,-250, -300,-400}
+local myOctagon = display. new polygon (512,368)
