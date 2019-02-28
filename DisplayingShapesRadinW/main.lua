@@ -14,12 +14,14 @@ display.setDefault("background", 204/255, 0/255, 204/255)
 --display parallelogram
 local verticesParallelogram = {0,-200, 200,-200, 0,100, -200,100}
 local myParallelogram = display.newPolygon (250, 350, verticesParallelogram)
-
+display.setDefaultColor("parallelogram", 102/255, 0/255, 204/255)
 
 --display trapazoid
-local verticesTrapazoid = {-300,-350, 200,-350, 300,0, -400,0}
+local verticesTrapazoid = {-150,-175, 100,-175, 150,0, -200,0}
 local myTrapazoid = display.newPolygon (500,500, verticesTrapazoid)
+display.setDefaultColor("myTrapazoid", 255/255, 0/255, 0/255)
 
 --display octagon
 local verticesOctagon = {-250,-500, 0,-500, 100,-350, 100,-250, 0,-100, -250,-100, -300,-250, -300,-350}
-local myOctagon = display.newPolygon (512,368)
+local myOctagon = display.newPolygon (512,368, verticesOctagon)
+display.setDefaultColor("myOctagon", 127/255, 0/255, 255/255)
