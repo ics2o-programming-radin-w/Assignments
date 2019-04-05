@@ -1,4 +1,4 @@
--- Title: TouchAndDrag
+-- Title: Animating Images
 -- Name: Radin.W
 -- Course: ICS2O/3C-----------------------------------------------------------------------------------------
 --
