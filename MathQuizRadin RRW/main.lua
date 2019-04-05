@@ -20,7 +20,7 @@ local questionObject
 local correctObject
 local incorrectObject
 
-local NumericField
+local numericField
 
 local randomNumber1
 local randomNumber2
@@ -29,18 +29,23 @@ local randomNumber2
 local userAnswer
 local correctAnswer
 
-local totalSeconds = 10
-local secondsLeft =  10
+local totalSeconds = 11
+local secondsLeft =  11
 local gameover
 
 local clockText
 local countDownTimer
+
 local score = 0
+local scoreDisplay
+
 local lives = 4
 local heart1
 local heart2
 local heart3
 local heart4
+
+local scoreText
 ----------------------------------------------------------------------
 -- OBJECT CREATION (IMAGES, NUMERIC TEXT FIELD, TEXT)
 ----------------------------------------------------------------------
@@ -76,8 +81,18 @@ incorrectObject.isVisible = false
 numericField = native.newTextField( display.contentWidth/2, display.contentHeight/2, 150, 80 )
 numericField.inputType = "number"
 
+scoreDisplay = display.newText( score, display.contentWidth/1.15, display.contentHeight/3.8, nil, 50)
+score = score + 1
+
 clockText =  display.newText( "", display.contentWidth/6, display.contentHeight/6, nil, 50)
 
+gameover = display.newImageRect("images/gameover.png", 100, 100)
+gameover.x = display.contentWidth / 2
+gameover.y = display.contentHeight / 2
+gameover.isVisible = false
+gameover:scale(10, 10)
+
+scoreText = display.newText("Score = ", display.contentWidth/1.5, display.contentHeight/3.7, nil, 100 )
 ----------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 ----------------------------------------------------------------------
@@ -93,22 +108,23 @@ local function UpdateTime()
 	if (secondsLeft == 0) then
     	-- reset the number of Seconds left 
     	secondsLeft = totalSeconds
-    	lives = lives -1
-    end
+    	lives = lives - 1
 
-
-    if (lives == 4) then
-    	heart4.isVisible = false
-    elseif (lives == 3) then
-        heart1.isVisible = false
-    elseif (lives == 2) then
-        heart3.isVisible = false
-    elseif (lives == 1) then
-        heart2.isVisible = false
-    elseif (lives == 0) then
-end end
-  
-
+ 		if (lives == 3) then
+       	    heart4.isVisible = false
+   	    elseif (lives == 2) then
+       	    heart3.isVisible = false
+   	 	elseif (lives == 1) then
+      	    heart2.isVisible = false
+   	    elseif (lives == 0) then
+   	    	heart1.isVisible = false
+   	    	gameover.isVisible = true
+   	    	numericField.isVisible = false
+   	    	scoreText.isVisible = false
+   	    end
+   	end
+end
+    
 -- function that calls the timer
 local function StartTimer()
 	-- create a countdown timer that loops infinitely
@@ -125,7 +141,6 @@ local function AskQuestion()
     -- create question in text object
     questionObject.text = randomNumber1 .. " + " .. randomNumber1
     questionObject.text = randomNumber2 .. " * " .. randomNumber2
-  
 end
 
   local function HideCorrect()
@@ -137,8 +152,12 @@ end
 local function Hideincorrect()
     incorrectObject.isVisible = false
     AskQuestion()
-
 end
+
+local function ResetTimer()
+	secondsLeft = 10
+end
+
 
 local function NumericFieldListener(event)    
 
@@ -154,9 +173,11 @@ local function NumericFieldListener(event)
        userAnswer = tonumber(event.target.text)
 
         -- if the users answer and the correct answer are the same
-         if (userAnswer == correctAnswer)  then
+        if (userAnswer == correctAnswer)  then
          	correctObject.isVisible = true
          	timer.performWithDelay(2000, HideCorrect)
+         	ResetTimer()
+         	score = score + 1
         else           
             incorrectObject.isVisible = true
             timer.performWithDelay(2000, Hideincorrect)
