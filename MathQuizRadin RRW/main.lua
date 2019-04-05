@@ -1,4 +1,4 @@
--- Title: LivesAndTimers
+-- Title: Math Quiz
 -- Name: Your Name
 -- Course: ICS2O/3C
 -- This program displays 3 hearts that when the total seconds reach 
@@ -24,8 +24,7 @@ local NumericField
 
 local randomNumber1
 local randomNumber2
-local randomNumber3
-local randomNumber4
+
 
 local userAnswer
 local correctAnswer
@@ -101,11 +100,11 @@ local function UpdateTime()
     if (lives == 4) then
     	heart4.isVisible = false
     elseif (lives == 3) then
-        heart2.isVisible = false
-    elseif (lives == 2) then
         heart1.isVisible = false
-    elseif (lives == 1) then
+    elseif (lives == 2) then
         heart3.isVisible = false
+    elseif (lives == 1) then
+        heart2.isVisible = false
     elseif (lives == 0) then
 end end
   
