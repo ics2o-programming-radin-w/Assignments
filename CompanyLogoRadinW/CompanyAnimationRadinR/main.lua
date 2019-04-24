@@ -9,6 +9,8 @@ display.setStatusBar(display.HiddenStatusBar)
 
 local scrollspeed = 0.7
 
+local OutrosoundChannel
+local OutroSound = audio.loadSound(  "Sounds/Outro.mp3")--.. setting a variable to an mp3 file
 
 local Companylogo = display.newImageRect("images/Companylogo.png", 192,256)
 Companylogo.alpha = 0
@@ -21,4 +23,6 @@ local function MoveCompanylogo(event)
 	Companylogo:rotate(4,5)
 end
 
+OutrosoundChannel = audio.play(OutroSound)
 Runtime:addEventListener("enterFrame", MoveCompanylogo)
+
